@@ -1,0 +1,29 @@
+#APN (claro.com.br)
+connect "/usr/sbin/chat -v -f /etc/chatscripts/gprs -T claro.com.br"
+ 
+# Porta
+/dev/ttyS0
+ 
+# Baudrate
+115200
+ 
+# IP com alocação dinâmica
+noipdefault
+ 
+# DNS do provedor
+usepeerdns
+ 
+# Conexao padrao com a internet
+defaultroute
+ 
+# Conexao persistente
+persist
+ 
+# Sem autenticacao
+noauth
+ 
+# Sem controle de fluxo
+nocrtscts
+ 
+# Sem linha de controle do modem
+local

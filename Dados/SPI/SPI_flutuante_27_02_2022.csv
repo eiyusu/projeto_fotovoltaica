@@ -1,0 +1,3 @@
+horario,tensao_p1(V),tensao_p2(V),tensao_p3(V),tensao_p3(V),corrente_p1p2(A),corrente_p3p4(A),irradiacao(W/m2)
+11:26:55.254790,0.0,0.0,0.0,0.0,0.0,0.5786984054322118,0.0
+11:28:29.792599,0.0,0.5787747005416953,0.0,0.0,0.0,0.0,0.0

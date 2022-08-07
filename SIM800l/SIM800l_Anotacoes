@@ -1,0 +1,58 @@
+Versões da raspberry 3 e posteriores têm a interface UART0 dedicada para o bluetooth, essa configuração é feita para habilitar a interface UART1 em /dev/ttyS0.
+Para verificar se a interface está habilitada:
+dmesg | grep tty
+
+Para habilitar a interface: 
+sudo nano /boot/config.txt
+
+Adicionar as linhas no arquivo:
+core_freq=250
+enable_uart=1
+
+Isso habilitará a interface e a colocará na baud rate adequada para ser utilizada em
+port = serial.Serial(“/dev/ttyS0″, baudrate=9600, timeout=1)
+
+Outra configuração necessária para utilização dos pinos é DESABILTIAR a Serial Console.
+Raspberry Pi Configuration > Interfaces
+O console serial pode interferir na comunicação por utilizar os mesmos pinos no boot para transmissão de informações do kernel.
+
+A conexão na placa é a seguinte:
+Raspberry - SIM800l
+GPIO15    - RXD
+GPIO15    - TXD
+
+Um comando AT enviado à placa ligada e corretamente conectada deve retornar um OK.
+
+**Conexão com a internet
+sudo apt-get update
+sudo apt-get install ppp screen elinks
+
+sudo -i
+cd /etc/ppp/peers/
+No diretório criar o arquivo rnet (contido nessa pasta)
+nano rnet
+
+Na linha connect do rnet é mencionado um chat da conexão, esse arquivo pode ser encontrado em
+nano /etc/chatscripts/gprs
+Documentacao: 
+https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=1515
+https://linux.die.net/man/8/pppd
+E, caso necessário, o PIN do chip poderá ser inserido 
+
+Para ativar a conexao
+
+Obs: desligar wifi
+ifconfig
+Identificar conexao com wifi 
+ificonfig wifi down
+
+sudo pon rnet
+
+Para verificar se a conexão foi estabelecida
+cat /var/log/syslog | grep pppd
+
+Para desativar a conexão
+sudo poff rnet
+
+Linha de comando para boot
+sudo sh .../ppp_boot.sh
