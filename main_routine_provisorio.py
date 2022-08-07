@@ -5,13 +5,13 @@ import os
 
 tl = Timeloop()
 
-@tl.job(interval=timedelta(seconds=.1))
-def read_SPI():
-    os.system('sudo python \SPI\SPI_provisorio.py')
+#@tl.job(interval=timedelta(seconds=.1))
+#def read_SPI():
+#    os.system('sudo python /home/pi/Desktop/projeto_fotovoltaica/SPI/SPI_provisorio.py')
     
 @tl.job(interval=timedelta(seconds=.1))
 def read_SenseHat():
-    os.system('sudo python \Sense_Hat\sense_measurements.py')
+    os.system('sudo python /home/pi/Desktop/projeto_fotovoltaica/Sense_hat/sense_measurements.py')
 
 def main(args):
     tl.start(block=True)
