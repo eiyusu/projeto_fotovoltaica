@@ -153,3 +153,5 @@ class AD770X():
     def reset(self) :
         for i in range(100) :
             self.spi.xfer([0xff])
+    
+            

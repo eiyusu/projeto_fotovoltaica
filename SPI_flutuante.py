@@ -1,29 +1,30 @@
+# sudo pigpiod
 from AD770X import *
-import time
-import pigpio
-from datetime import date, datetime
 import csv
 import os
+import pigpio
+import time
+from datetime import date, datetime
 
-def main(args):
+def read_SPI_flutuante():
 
     pi = pigpio.pi()
     data = date.today()
-    filename = data.strftime("SPI_flut_dadosAltaFrequencia_%d_%m_%Y")
+    filename = data.strftime("SPI_flut_%Y_%m_%d")
     horario = datetime.now().time()
     horario = str(horario)
 
     #Definição de pinos
-    GPIO_TENSAO_P1P2 = 5
-    GPIO_TENSAO_P3P4 = 6
-    GPIO_CURR = 22
-    GPIO_IRR = 26
-    ACS712_ESCALA = 10 #1A/100mV = 10A/V
-    ACS712_OFFSET = 2.5 #2.5V para 0A com ganho de 100mV/A
+    GPIO_TENSAO_P1P2 =5
+    GPIO_TENSAO_P3P4 =6
+    GPIO_CURR =22
+    GPIO_IRR =26
+    ACS712_ESCALA =10 #1A/100mV = 10A/V
+    ACS712_OFFSET =2.5 #2.5V para 0A com ganho de 100mV/A
 
     #Desligar CS de todas placas
-    pi.write(GPIO_TENSAO_P1P2, 1)
-    pi.write(GPIO_TENSAO_P3P4, 1)
+    pi.write(GPIO_TENSAO_P1P2,1)
+    pi.write(GPIO_TENSAO_P3P4, )
     pi.write(GPIO_CURR, 1)
     pi.write(GPIO_IRR, 1)
 
@@ -103,7 +104,7 @@ def main(args):
     {"horario": horario, "tensao_p1(V)": tensao_p1, "tensao_p2(V)": tensao_p2, "tensao_p3(V)": tensao_p3, "tensao_p4(V)": tensao_p4, "corrente_p1p2(A)": corrente_p1p2, "corrente_p3p4(A)": corrente_p3p4, "irradiacao(W/m2)": irradiacao}
     ]
 
-    file_loc = "/home/pi/Desktop/projeto_energia/Dados/SPI/"+filename+".csv"
+    file_loc = "/home/pi/Desktop/projeto_fotovoltaica/Dados/SPI/"+filename+".csv"
 
     if (os.path.isfile(file_loc)):
         with open(file_loc, "a") as csv_file:
@@ -116,6 +117,3 @@ def main(args):
             arquivo.writerows(dados)
 
 
-if __name__ == '__main__':
-    import sys
-    sys.exit(main(sys.argv))

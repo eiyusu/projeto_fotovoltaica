@@ -1,26 +1,27 @@
+# sudo pigpiod
 from AD770X import *
-import time
-import pigpio
-from datetime import date, datetime
 import csv
 import os
+import pigpio
+import time
+from datetime import date, datetime
 
-def main(args):
+def read_SPI_fixo():
 
     pi = pigpio.pi()
     data = date.today()
-    filename = data.strftime("SPI_fixo_dadosAltaFrequencia_%d_%m_%Y")
+    filename = data.strftime("SPI_fixo_%Y_%m_%d")
     horario = datetime.now().time()
     horario = str(horario)
 
     #Definição de pinos e delay e leitura de irradiação
-    GPIO_TENSAO = 5
-    GPIO_IRR = 26
+    GPIO_TENSAO =5
+    GPIO_IRR =26
     LER_IRR = True
 
     #Desligar CS todas placas
-    pi.write(GPIO_TENSAO, 1)
-    pi.write(GPIO_IRR, 1)
+    pi.write(GPIO_TENSAO,1)
+    pi.write(GPIO_IRR,1)
 
     ad7705 = AD770X(device=0)
 
@@ -63,7 +64,7 @@ def main(args):
     {"horario": horario, "tensao_p1(V)": tensao_p1, "tensao_p2(V)": tensao_p2, "irradiacao(W/m2)": irradiacao}
     ]
 
-    file_loc = "/home/pi/Desktop/projeto_energia/Dados/SPI/"+filename+".csv"
+    file_loc = "/home/pi/Desktop/projeto_fotovoltaica/Dados/SPI/"+filename+".csv"
 
     if (os.path.isfile(file_loc)):
         with open(file_loc, "a") as csv_file:
@@ -75,7 +76,3 @@ def main(args):
             arquivo.writeheader()
             arquivo.writerows(dados)
 
-
-if __name__ == '__main__':
-    import sys
-    sys.exit(main(sys.argv))
