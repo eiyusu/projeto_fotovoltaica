@@ -72,4 +72,4 @@ def read_SPI_provisorio():
             arquivo.writeheader()
             arquivo.writerows(dados)
     csv_file.close()
-    
+    print(horario+': SPI Provisorio data saved')

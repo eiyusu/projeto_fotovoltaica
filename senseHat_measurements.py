@@ -44,3 +44,5 @@ def read_senseHat_sensors():
             arquivo.writeheader()
             arquivo.writerows(dados_sense)
     csv_file_sense.close()
+    
+    print(horario+': Sense Hat data saved')
