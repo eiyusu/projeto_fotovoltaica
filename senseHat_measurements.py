@@ -9,7 +9,6 @@ def read_senseHat_sensors():
     sense = SenseHat()
     data = datetime.date.today()
     horario = datetime.datetime.now()
-    horario=str(horario)
     
     umidade = sense.humidity
     temp_h = sense.temperature
@@ -29,10 +28,13 @@ def read_senseHat_sensors():
     accelerom_pitch = accelerom['pitch']
     accelerom_yaw = accelerom['yaw']
     
+    dir_name = data.strftime("dados_%Y_%m_%d")
+    if not os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name):
+        os.mkdir('/home/pi/Desktop/projeto_fotovoltaica/'+dir_name)
     header_sense = ["horario", "umidade_relativa(percent)", "temperatura_umidade(deg_C)", "temperatura_pressao(deg_C)", "pressao(milliBar)", "compass_norte(deg)", "gyro_roll(deg)", "gyro_pitch(deg)", "gyro_yaw(deg)", "accelerometer_roll(deg)", "accelerometer_pith(deg)", "accelerometer_yaw(deg)"]
     dados_sense = [{"horario": horario,"umidade_relativa(percent)": umidade,"temperatura_umidade(deg_C)": temp_h,"temperatura_pressao(deg_C)": temp_p,"pressao(milliBar)": pressao,"compass_norte(deg)": compass,"gyro_roll(deg)": gyro_roll,"gyro_pitch(deg)": gyro_pitch,"gyro_yaw(deg)": gyro_yaw,"accelerometer_roll(deg)": accelerom_roll,"accelerometer_pith(deg)": accelerom_pitch,"accelerometer_yaw(deg)": accelerom_yaw}]
     filename_sense = data.strftime("senseHat_%Y_%m_%d")
-    file_loc_sense = "/home/pi/Desktop/projeto_fotovoltaica/Dados/Sense_Hat/"+filename_sense+".csv"
+    file_loc_sense = "/home/pi/Desktop/projeto_fotovoltaica/"+dir_name+"/"+filename_sense+".csv"
     
     if (os.path.isfile(file_loc_sense)):
         with open(file_loc_sense, "a") as csv_file_sense:
@@ -45,4 +47,4 @@ def read_senseHat_sensors():
             arquivo.writerows(dados_sense)
     csv_file_sense.close()
     
-    print(horario+': Sense Hat data saved')
+    print(str(horario)+': Sense Hat data saved')

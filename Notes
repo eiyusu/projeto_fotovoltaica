@@ -1,0 +1,1 @@
+tar cvjf target_file_loc.tar.bz2 folder_to_compress_loc

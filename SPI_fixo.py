@@ -11,7 +11,6 @@ def read_SPI_fixo_sensors():
 
     data = datetime.date.today()
     horario = datetime.datetime.now()
-    horario=str(horario)
 
     #Desligar CS todas placas
     pi.write(GPIO_TENSAO,1)
@@ -25,13 +24,11 @@ def read_SPI_fixo_sensors():
     ad7705.initChannel(CHN_AIN1)
     time.sleep(slp_time)
     tensao_p1 = ad7705.readADResultRaw(CHN_AIN1)*ESCALA
-    tensao_p1 = str(tensao_p1)
     time.sleep(slp_time)
 
     ad7705.initChannel(CHN_AIN2)
     time.sleep(slp_time)
     tensao_p2 = ad7705.readADResultRaw(CHN_AIN2)*ESCALA
-    tensao_p2 = str(tensao_p2)
     #Desativar o CS
     pi.write(GPIO_TENSAO, 1)
 
@@ -44,12 +41,14 @@ def read_SPI_fixo_sensors():
         ad7705.initChannel(CHN_AIN1)
         time.sleep(slp_time)
         irradiacao = ad7705.readADResultRaw(CHN_AIN1)*ESCALA
-        irradiacao = str(irradiacao)
         #Desativar o CS
         pi.write(GPIO_IRR, 1)
     else:
         irradiacao = "null"
         
+    dir_name = data.strftime("dados_%Y_%m_%d")
+    if not os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name):   
+        os.mkdir('/home/pi/Desktop/projeto_fotovoltaica/'+dir_name)
     filename = data.strftime("SPI_fixo_%Y_%m_%d")
 
     header = ["horario", "tensao_p1(V)", "tensao_p2(V)", "irradiacao(W/m2)"]
@@ -58,7 +57,7 @@ def read_SPI_fixo_sensors():
     {"horario": horario, "tensao_p1(V)": tensao_p1, "tensao_p2(V)": tensao_p2, "irradiacao(W/m2)": irradiacao}
     ]
 
-    file_loc = "/home/pi/Desktop/projeto_fotovoltaica/Dados/SPI/"+filename+".csv"
+    file_loc = "/home/pi/Desktop/projeto_fotovoltaica/"+dir_name+"/"+filename+".csv"
 
     if (os.path.isfile(file_loc)):
         with open(file_loc, "a") as csv_file:
@@ -70,5 +69,5 @@ def read_SPI_fixo_sensors():
             arquivo.writeheader()
             arquivo.writerows(dados)
     csv_file.close()
-    print(horario+': SPI Fixo data saved')
+    print(str(horario)+': SPI Fixo data saved')
 
