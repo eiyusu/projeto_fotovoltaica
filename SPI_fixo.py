@@ -4,26 +4,18 @@ import csv
 import os
 import pigpio
 import time
-from datetime import date, datetime
+import datetime
+from main_routine_provisorio import *
 
-def read_SPI_fixo():
+def read_SPI_fixo_sensors():
 
-    pi = pigpio.pi()
-    data = date.today()
-    filename = data.strftime("SPI_fixo_%Y_%m_%d")
-    horario = datetime.now().time()
-    horario = str(horario)
-
-    #Definição de pinos e delay e leitura de irradiação
-    GPIO_TENSAO =5
-    GPIO_IRR =26
-    LER_IRR = True
+    data = datetime.date.today()
+    horario = datetime.datetime.now()
+    horario=str(horario)
 
     #Desligar CS todas placas
     pi.write(GPIO_TENSAO,1)
     pi.write(GPIO_IRR,1)
-
-    ad7705 = AD770X(device=0)
 
     #Canais de tensão --- definir taxa de ganho dos divisores
     #Ativar o CS
@@ -56,7 +48,9 @@ def read_SPI_fixo():
         #Desativar o CS
         pi.write(GPIO_IRR, 1)
     else:
-        irradiacao = "#####"
+        irradiacao = "null"
+        
+    filename = data.strftime("SPI_fixo_%Y_%m_%d")
 
     header = ["horario", "tensao_p1(V)", "tensao_p2(V)", "irradiacao(W/m2)"]
 
@@ -75,4 +69,6 @@ def read_SPI_fixo():
             arquivo = csv.DictWriter(csv_file, fieldnames=header)
             arquivo.writeheader()
             arquivo.writerows(dados)
+    csv_file.close()
+    print(horario+': SPI Fixo data saved')
 

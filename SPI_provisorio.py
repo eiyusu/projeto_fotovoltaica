@@ -7,7 +7,7 @@ import time
 import datetime
 from main_routine_provisorio import *
 
-def read_SPI_provisorio():
+def read_SPI_provisorio_sensors():
     data = datetime.date.today()
     horario = datetime.datetime.now()
     horario=str(horario)

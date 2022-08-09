@@ -4,32 +4,20 @@ import csv
 import os
 import pigpio
 import time
-from datetime import date, datetime
+import datetime
+from main_routine_provisorio import *
 
-def read_SPI_flutuante():
+def read_SPI_flutuante_sensors():
 
-    pi = pigpio.pi()
-    data = date.today()
-    filename = data.strftime("SPI_flut_%Y_%m_%d")
-    horario = datetime.now().time()
-    horario = str(horario)
-
-    #Definição de pinos
-    GPIO_TENSAO_P1P2 =5
-    GPIO_TENSAO_P3P4 =6
-    GPIO_CURR =22
-    GPIO_IRR =26
-    ACS712_ESCALA =10 #1A/100mV = 10A/V
-    ACS712_OFFSET =2.5 #2.5V para 0A com ganho de 100mV/A
+    data = datetime.date.today()
+    horario = datetime.datetime.now()
+    horario=str(horario)
 
     #Desligar CS de todas placas
     pi.write(GPIO_TENSAO_P1P2,1)
     pi.write(GPIO_TENSAO_P3P4, )
     pi.write(GPIO_CURR, 1)
     pi.write(GPIO_IRR, 1)
-
-
-    ad7705 = AD770X(device=0)
 
     #Canais de tensão da associação P1 P2 --- definir taxa de ganho dos divisores
     #Ativar o CS
@@ -98,6 +86,9 @@ def read_SPI_flutuante():
     #Desativar o CS
     pi.write(GPIO_IRR, 1)
 
+    
+    filename = data.strftime("SPI_flut_%Y_%m_%d")
+    
     header = ["horario", "tensao_p1(V)", "tensao_p2(V)", "tensao_p3(V)", "tensao_p4(V)", "corrente_p1p2(A)", "corrente_p3p4(A)", "irradiacao(W/m2)"]
 
     dados = [
@@ -115,5 +106,8 @@ def read_SPI_flutuante():
             arquivo = csv.DictWriter(csv_file, fieldnames=header)
             arquivo.writeheader()
             arquivo.writerows(dados)
+    
+    csv_file.close()
+    print(horario+': SPI Flutuante data saved')
 
 
