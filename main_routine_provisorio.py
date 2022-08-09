@@ -10,6 +10,7 @@ from SPI_provisorio import *
 from senseHat_measurements import *
 
 os.system('sudo pigpiod')
+time.sleep(1)
 pi = pigpio.pi()
 GPIO_TENSAO =5
 GPIO_CURR_IRR =22
