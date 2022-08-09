@@ -5,7 +5,7 @@ import os
 import pigpio
 import time
 import datetime
-from main_routine_provisorio import *
+from main_routine import *
 
 def read_SPI_flutuante_sensors():
 
@@ -15,7 +15,7 @@ def read_SPI_flutuante_sensors():
 
     #Desligar CS de todas placas
     pi.write(GPIO_TENSAO_P1P2,1)
-    pi.write(GPIO_TENSAO_P3P4, )
+    pi.write(GPIO_TENSAO_P3P4, 1)
     pi.write(GPIO_CURR, 1)
     pi.write(GPIO_IRR, 1)
 

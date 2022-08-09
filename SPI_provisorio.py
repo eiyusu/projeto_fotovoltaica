@@ -5,7 +5,7 @@ import os
 import pigpio
 import time
 import datetime
-from main_routine_provisorio import *
+from main_routine import *
 
 def read_SPI_provisorio_sensors():
     data = datetime.date.today()

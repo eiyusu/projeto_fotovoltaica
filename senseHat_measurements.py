@@ -3,7 +3,7 @@ import csv
 import os
 import time
 import datetime
-from main_routine_provisorio import *
+from main_routine import *
 
 def read_senseHat_sensors():
     sense = SenseHat()
