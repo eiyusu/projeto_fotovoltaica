@@ -10,6 +10,15 @@ def read_senseHat_sensors():
     data = datetime.date.today()
     horario = datetime.datetime.now()
     
+    if int(horario.strftime('%H')) >=0 and int(horario.strftime('%H')) < 6:
+        day_part='1'
+    elif int(horario.strftime('%H')) >=6 and int(horario.strftime('%H')) < 12:
+        day_part='2'
+    elif int(horario.strftime('%H')) >=12 and int(horario.strftime('%H')) < 18:
+        day_part='3'
+    elif int(horario.strftime('%H')) >=18:
+        day_part='4'
+    
     umidade = sense.humidity
     temp_h = sense.temperature
     pressao = sense.pressure
@@ -28,7 +37,7 @@ def read_senseHat_sensors():
     accelerom_pitch = accelerom['pitch']
     accelerom_yaw = accelerom['yaw']
     
-    dir_name = data.strftime("dados_%Y_%m_%d")
+    dir_name = data.strftime("dados_%Y_%m_%d_")+day_part
     if not os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name):
         os.mkdir('/home/pi/Desktop/projeto_fotovoltaica/'+dir_name)
     header_sense = ["horario", "umidade_relativa(percent)", "temperatura_umidade(deg_C)", "temperatura_pressao(deg_C)", "pressao(milliBar)", "compass_norte(deg)", "gyro_roll(deg)", "gyro_pitch(deg)", "gyro_yaw(deg)", "accelerometer_roll(deg)", "accelerometer_pith(deg)", "accelerometer_yaw(deg)"]

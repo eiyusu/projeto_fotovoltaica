@@ -15,6 +15,7 @@ os.system('sudo pigpiod')
 time.sleep(.5)
 ad7705 = AD770X(device=0)
 pi = pigpio.pi()
+init_day_part = datetime.datetime.now().strftime('%H')
 
 # GPIO Provisorio
 GPIO_TENSAO = 5
@@ -52,12 +53,15 @@ def read_SenseHat():
     read_senseHat_sensors()
 
 def main(args):
-       
+
+# Flutuante
 #    schedule(read_SPI_flutuante,interval=0.1)
 #    schedule(read_SenseHat,interval=1)
-        
+
+# Fixo
 #    schedule(read_SPI_fixo,interval=0.1)
-   
+
+# Provisório
     schedule(read_SPI_provisorio,interval=0.1)
     schedule(read_SenseHat,interval=1)
         

@@ -10,6 +10,15 @@ from main_routine import *
 def read_SPI_provisorio_sensors():
     data = datetime.date.today()
     horario = datetime.datetime.now()
+    
+    if int(horario.strftime('%H')) >=0 and int(horario.strftime('%H')) < 6:
+        day_part='1'
+    elif int(horario.strftime('%H')) >=6 and int(horario.strftime('%H')) < 12:
+        day_part='2'
+    elif int(horario.strftime('%H')) >=12 and int(horario.strftime('%H')) < 18:
+        day_part='3'
+    elif int(horario.strftime('%H')) >=18:
+        day_part='4'
 
     #Desligar CS todas placas
     pi.write(GPIO_TENSAO,1)
@@ -49,7 +58,7 @@ def read_SPI_provisorio_sensors():
     pi.write(GPIO_CURR_IRR, 1)
     
     
-    dir_name = data.strftime("dados_%Y_%m_%d")
+    dir_name = data.strftime("dados_%Y_%m_%d_")+day_part
     if not os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name):
         os.mkdir("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name)
     filename = data.strftime("SPI_prov_%Y_%m_%d")
