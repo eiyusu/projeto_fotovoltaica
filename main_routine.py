@@ -9,13 +9,13 @@ import time
 #from SPI_fixo import *
 from SPI_provisorio import *
 from senseHat_measurements import *
+from dayPart_handler import *
 
 # Inicializacao comum - pigpiod e ADC7705
 os.system('sudo pigpiod')
 time.sleep(.5)
 ad7705 = AD770X(device=0)
 pi = pigpio.pi()
-init_day_part = datetime.datetime.now().strftime('%H')
 
 # GPIO Provisorio
 GPIO_TENSAO = 5
@@ -51,6 +51,9 @@ def read_SPI_flutuante():
 #Sense Hat
 def read_SenseHat():
     read_senseHat_sensors()
+    
+def check_dayPart():
+    handle_file()
 
 def main(args):
 
@@ -64,6 +67,9 @@ def main(args):
 # Provisório
     schedule(read_SPI_provisorio,interval=0.1)
     schedule(read_SenseHat,interval=1)
+    
+# Rotina para verificar e comprimir arquivos
+    schedule(handle_file,interval=3600)
         
     run_loop()
 
