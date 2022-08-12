@@ -35,10 +35,10 @@ def handle_file():
         if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name):
             command = 'cd /home/pi/Desktop/projeto_fotovoltaica/;tar cvjf saved_data/' + dir_name +'.tar.bz2 '+ dir_name
             os.system(command)
-            shutil.rmtree("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name, ignore_errors = True)mtree("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name, ignore_errors = True)
+            shutil.rmtree("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name, ignore_errors = True)
     elif day_part == '4':
         dir_name = data.strftime("dados_%Y_%m_%d_3")
         if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name):
             ccommand = 'cd /home/pi/Desktop/projeto_fotovoltaica/;tar cvjf saved_data/' + dir_name +'.tar.bz2 '+ dir_name
             os.system(command)
-            shutil.rmtree("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name, ignore_errors = True)rmtree("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name, ignore_errors = True)
+            shutil.rmtree("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name, ignore_errors = True)
