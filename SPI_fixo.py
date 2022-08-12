@@ -58,7 +58,7 @@ def read_SPI_fixo_sensors():
     dir_name = data.strftime("dados_%Y_%m_%d_")+day_part
     if not os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name):   
         os.mkdir('/home/pi/Desktop/projeto_fotovoltaica/'+dir_name)
-    filename = data.strftime("SPI_fixo_%Y_%m_%d")
+    filename = data.strftime("SPI_fixo_%Y_%m_%d_")+day_part
 
     header = ["horario", "tensao_p1(V)", "tensao_p2(V)", "irradiacao(W/m2)"]
 

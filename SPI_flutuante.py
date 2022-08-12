@@ -90,7 +90,7 @@ def read_SPI_flutuante_sensors():
     dir_name = data.strftime("dados_%Y_%m_%d_")+day_part
     if not os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name):
         os.mkdir('/home/pi/Desktop/projeto_fotovoltaica/'+dir_name)
-    filename = data.strftime("SPI_flut_%Y_%m_%d")
+    filename = data.strftime("SPI_flut_%Y_%m_%d_")+day_part
     
     header = ["horario", "tensao_p1(V)", "tensao_p2(V)", "tensao_p3(V)", "tensao_p4(V)", "corrente_p1p2(A)", "corrente_p3p4(A)", "irradiacao(W/m2)"]
 

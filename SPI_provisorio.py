@@ -61,7 +61,7 @@ def read_SPI_provisorio_sensors():
     dir_name = data.strftime("dados_%Y_%m_%d_")+day_part
     if not os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name):
         os.mkdir("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name)
-    filename = data.strftime("SPI_prov_%Y_%m_%d")
+    filename = data.strftime("SPI_prov_%Y_%m_%d_")+day_part
     header = ["horario", "tensao_p1(V)", "tensao_p2(V)", "corrente(A)", "radiacao(W/m2)"]
 
     dados = [

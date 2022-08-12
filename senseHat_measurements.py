@@ -42,7 +42,7 @@ def read_senseHat_sensors():
         os.mkdir('/home/pi/Desktop/projeto_fotovoltaica/'+dir_name)
     header_sense = ["horario", "umidade_relativa(percent)", "temperatura_umidade(deg_C)", "temperatura_pressao(deg_C)", "pressao(milliBar)", "compass_norte(deg)", "gyro_roll(deg)", "gyro_pitch(deg)", "gyro_yaw(deg)", "accelerometer_roll(deg)", "accelerometer_pith(deg)", "accelerometer_yaw(deg)"]
     dados_sense = [{"horario": horario,"umidade_relativa(percent)": umidade,"temperatura_umidade(deg_C)": temp_h,"temperatura_pressao(deg_C)": temp_p,"pressao(milliBar)": pressao,"compass_norte(deg)": compass,"gyro_roll(deg)": gyro_roll,"gyro_pitch(deg)": gyro_pitch,"gyro_yaw(deg)": gyro_yaw,"accelerometer_roll(deg)": accelerom_roll,"accelerometer_pith(deg)": accelerom_pitch,"accelerometer_yaw(deg)": accelerom_yaw}]
-    filename_sense = data.strftime("senseHat_%Y_%m_%d")
+    filename_sense = data.strftime("senseHat_%Y_%m_%d_")+day_part
     file_loc_sense = "/home/pi/Desktop/projeto_fotovoltaica/"+dir_name+"/"+filename_sense+".csv"
     
     if (os.path.isfile(file_loc_sense)):
