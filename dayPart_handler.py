@@ -1,6 +1,7 @@
 import os
 import time
 import datetime
+import shutil
 from main_routine import *
 
 def handle_file():
@@ -20,24 +21,24 @@ def handle_file():
         data = datetime.date.today() - datetime.timedelta(days=1)
         dir_name = data.strftime("dados_%Y_%m_%d_4")
         if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name):
-            command = 'tar cvjf ' + '/home/pi/Desktop/projeto_fotovoltaica/' + dir_name +'.tar.bz2 '+ '/home/pi/Desktop/projeto_fotovoltaica/saved_data'
+            command = 'tar cvjf ' + '/home/pi/Desktop/projeto_fotovoltaica/' + dir_name +'.tar.bz2 '+ '/home/pi/Desktop/projeto_fotovoltaica/saved_data/'
             os.system(command)
-            os.remove("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name)
+            shutil.rmtree("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name, ignore_errors = True)
     elif day_part == '2':
         dir_name = data.strftime("dados_%Y_%m_%d_1")
         if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name):
-            command = 'tar cvjf ' + '/home/pi/Desktop/projeto_fotovoltaica/' + dir_name +'.tar.bz2 '+ '/home/pi/Desktop/projeto_fotovoltaica/saved_data'
+            command = 'tar cvjf ' + '/home/pi/Desktop/projeto_fotovoltaica/' + dir_name +'.tar.bz2 '+ '/home/pi/Desktop/projeto_fotovoltaica/saved_data/'
             os.system(command)
-            os.remove("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name)
+            shutil.rmtree("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name, ignore_errors = True)
     elif day_part == '3':
         dir_name = data.strftime("dados_%Y_%m_%d_2")
         if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name):
-            command = 'tar cvjf ' + '/home/pi/Desktop/projeto_fotovoltaica/' + dir_name +'.tar.bz2 '+ '/home/pi/Desktop/projeto_fotovoltaica/saved_data'
+            command = 'tar cvjf ' + '/home/pi/Desktop/projeto_fotovoltaica/' + dir_name +'.tar.bz2 '+ '/home/pi/Desktop/projeto_fotovoltaica/saved_data/'
             os.system(command)
-            os.remove("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name)
+            shutil.rmtree("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name, ignore_errors = True)
     elif day_part == '4':
         dir_name = data.strftime("dados_%Y_%m_%d_3")
         if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name):
-            command = 'tar cvjf ' + '/home/pi/Desktop/projeto_fotovoltaica/' + dir_name +'.tar.bz2 '+ '/home/pi/Desktop/projeto_fotovoltaica/saved_data'
+            command = 'tar cvjf ' + '/home/pi/Desktop/projeto_fotovoltaica/' + dir_name +'.tar.bz2 '+ '/home/pi/Desktop/projeto_fotovoltaica/saved_data/'
             os.system(command)
-            os.remove("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name)
+            shutil.rmtree("/home/pi/Desktop/projeto_fotovoltaica/"+dir_name, ignore_errors = True)
