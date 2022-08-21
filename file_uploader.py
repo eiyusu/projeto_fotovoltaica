@@ -29,12 +29,13 @@ def upload_files():
         
     if connected():
         gauth = GoogleAuth()           
-        drive = GoogleDrive(gauth)  
+        drive = GoogleDrive(gauth) 
+        
         if day_part == '1':
             data = datetime.date.today() - datetime.timedelta(days=1)
             dir_name = data.strftime("dados_%Y_%m_%d_4")
             if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"):
-                gfile = drive.CreateFile({'parents': [{'id': '1pzschX3uMbxU0lB5WZ6IlEEeAUE8MZ-t'}]})
+                gfile = drive.CreateFile({dir_name: "/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"})
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
                 print(dir_name+' uploaded')
@@ -43,7 +44,7 @@ def upload_files():
         elif day_part == '2':
             dir_name = data.strftime("dados_%Y_%m_%d_1")
             if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"):
-                gfile = drive.CreateFile({'parents': [{'id': '1pzschX3uMbxU0lB5WZ6IlEEeAUE8MZ-t'}]})
+                gfile = drive.CreateFile({dir_name: "/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"})
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
                 print(dir_name+' uploaded')
@@ -52,7 +53,7 @@ def upload_files():
         elif day_part == '3':
             dir_name = data.strftime("dados_%Y_%m_%d_2")
             if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"):
-                gfile = drive.CreateFile({'parents': [{'id': '1pzschX3uMbxU0lB5WZ6IlEEeAUE8MZ-t'}]})
+                gfile = drive.CreateFile({dir_name: "/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"})
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
                 print(dir_name+' uploaded')
@@ -61,7 +62,7 @@ def upload_files():
         elif day_part == '4':
             dir_name = data.strftime("dados_%Y_%m_%d_3")
             if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"):
-                gfile = drive.CreateFile({'parents': [{'id': '1pzschX3uMbxU0lB5WZ6IlEEeAUE8MZ-t'}]})
+                gfile = drive.CreateFile({dir_name: "/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"})
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
                 print(dir_name+' uploaded')
