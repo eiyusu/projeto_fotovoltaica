@@ -28,7 +28,8 @@ def upload_files():
         day_part='4'
         
     if connected():
-        gauth = GoogleAuth()           
+        os.chdir('/home/pi/Desktop/projeto_fotovoltaica')
+        gauth = GoogleAuth()
         drive = GoogleDrive(gauth) 
         
         if day_part == '1':
@@ -39,7 +40,7 @@ def upload_files():
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
                 print(dir_name+' uploaded')
-                os.remove("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2", ignore_errors = True)
+                os.remove("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 print(dir_name+'.tar.bz2 deleted')
         elif day_part == '2':
             dir_name = data.strftime("dados_%Y_%m_%d_1")
@@ -48,7 +49,7 @@ def upload_files():
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
                 print(dir_name+' uploaded')
-                os.remove("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2", ignore_errors = True)
+                os.remove("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 print(dir_name+'.tar.bz2 deleted')
         elif day_part == '3':
             dir_name = data.strftime("dados_%Y_%m_%d_2")
@@ -57,7 +58,7 @@ def upload_files():
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
                 print(dir_name+' uploaded')
-                os.remove("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2", ignore_errors = True)
+                os.remove("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 print(dir_name+'.tar.bz2 deleted')
         elif day_part == '4':
             dir_name = data.strftime("dados_%Y_%m_%d_3")
@@ -66,5 +67,5 @@ def upload_files():
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
                 print(dir_name+' uploaded')
-                os.remove("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2", ignore_errors = True)
+                os.remove("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 print(dir_name+'.tar.bz2 deleted')
