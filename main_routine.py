@@ -6,8 +6,8 @@ import pigpio
 from sense_hat import SenseHat
 import time
 #from SPI_flutuante import *
-#from SPI_fixo import *
-from SPI_provisorio import *
+from SPI_fixo import *
+#from SPI_provisorio import *
 from senseHat_measurements import *
 from dayPart_handler import *
 from file_uploader import *
@@ -66,17 +66,17 @@ def main(args):
 #    schedule(read_SenseHat,interval=1)
 
 # Fixo
-#    schedule(read_SPI_fixo,interval=0.1)
+    schedule(read_SPI_fixo,interval=0.1)
 
 # Provisório
-    schedule(read_SPI_provisorio,interval=0.1)
-    schedule(read_SenseHat,interval=1)
+#    schedule(read_SPI_provisorio,interval=0.1)
+#    schedule(read_SenseHat,interval=1)
     
 # Rotina para verificar e comprimir arquivos
-    schedule(check_dayPart,interval=3600)
+    schedule(check_dayPart,interval=20)
 
 # Rotina para verificar e fazer upload de arquivos
-    schedule(upload_file(),interval=3600)
+    schedule(upload_file(),interval=60)
         
     run_loop()
 

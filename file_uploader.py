@@ -37,25 +37,33 @@ def upload_files():
                 gfile = drive.CreateFile({'parents': [{'id': '1pzschX3uMbxU0lB5WZ6IlEEeAUE8MZ-t'}]})
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
+                print(dir_name+' uploaded')
                 shutil.rmtree("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2", ignore_errors = True)
+                print(dir_name+'.tar.bz2 deleted')
         elif day_part == '2':
             dir_name = data.strftime("dados_%Y_%m_%d_1")
             if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"):
                 gfile = drive.CreateFile({'parents': [{'id': '1pzschX3uMbxU0lB5WZ6IlEEeAUE8MZ-t'}]})
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
+                print(dir_name+' uploaded')
                 shutil.rmtree("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2", ignore_errors = True)
+                print(dir_name+'.tar.bz2 deleted')
         elif day_part == '3':
             dir_name = data.strftime("dados_%Y_%m_%d_2")
             if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"):
                 gfile = drive.CreateFile({'parents': [{'id': '1pzschX3uMbxU0lB5WZ6IlEEeAUE8MZ-t'}]})
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
+                print(dir_name+' uploaded')
                 shutil.rmtree("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2", ignore_errors = True)
+                print(dir_name+'.tar.bz2 deleted')
         elif day_part == '4':
             dir_name = data.strftime("dados_%Y_%m_%d_3")
             if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"):
                 gfile = drive.CreateFile({'parents': [{'id': '1pzschX3uMbxU0lB5WZ6IlEEeAUE8MZ-t'}]})
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
+                print(dir_name+' uploaded')
                 shutil.rmtree("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2", ignore_errors = True)
+                print(dir_name+'.tar.bz2 deleted')
