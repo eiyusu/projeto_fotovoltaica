@@ -10,6 +10,7 @@ import time
 from SPI_provisorio import *
 from senseHat_measurements import *
 from dayPart_handler import *
+from file_uploader import *
 
 # Inicializacao comum - pigpiod e ADC7705
 os.system('sudo pigpiod')
@@ -53,7 +54,10 @@ def read_SenseHat():
     read_senseHat_sensors()
     
 def check_dayPart():
-    handle_file()
+    file_handler()
+    
+def upload_file():
+    upload_files()
 
 def main(args):
 
@@ -69,7 +73,10 @@ def main(args):
     schedule(read_SenseHat,interval=1)
     
 # Rotina para verificar e comprimir arquivos
-    schedule(handle_file,interval=3600)
+    schedule(check_dayPart,interval=3600)
+
+# Rotina para verificar e fazer upload de arquivos
+    schedule(upload_file(),interval=3600)
         
     run_loop()
 
