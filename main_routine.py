@@ -73,10 +73,10 @@ def main(args):
 #    schedule(read_SenseHat,interval=1)
     
 # Rotina para verificar e comprimir arquivos
-    schedule(check_dayPart,interval=20)
+    schedule(check_dayPart,interval=7200)
 
 # Rotina para verificar e fazer upload de arquivos
-    schedule(upload_file(),interval=60)
+    schedule(upload_file(),interval=7200)
         
     run_loop()
 
