@@ -2,7 +2,6 @@ import os
 import time
 import datetime
 import shutil
-from main_routine import *
 import urllib.request
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
@@ -38,35 +37,39 @@ def upload_files():
                 gfile = drive.CreateFile({'title': dir_name})
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
-                print(dir_name+' uploaded')
                 os.remove("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
-                print(dir_name+'.tar.bz2 deleted')
         elif day_part == '2':
             dir_name = data.strftime("dados_%Y_%m_%d_1")
             if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"):
                 gfile = drive.CreateFile({'title': dir_name})
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
-                print(dir_name+' uploaded')
                 os.remove("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
-                print(dir_name+'.tar.bz2 deleted')
         elif day_part == '3':
             dir_name = data.strftime("dados_%Y_%m_%d_2")
             if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"):
                 gfile = drive.CreateFile({'title': dir_name})
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
-                print(dir_name+' uploaded')
                 os.remove("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
-                print(dir_name+'.tar.bz2 deleted')
         elif day_part == '4':
             dir_name = data.strftime("dados_%Y_%m_%d_3")
             if os.path.exists("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2"):
                 gfile = drive.CreateFile({'title': dir_name})
                 gfile.SetContentFile("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 gfile.Upload()
-                print(dir_name+' uploaded')
                 os.remove("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
-                print(dir_name+'.tar.bz2 deleted')
+                
+def main(args):
+    while True:
+        #Ligar internet
+        time.sleep(600)
+        upload_files()
+        #Desligar internet
+        time.sleep(3000)
+
+if __name__ == '__main__':
+    import sys
+    sys.exit(main(sys.argv))
                 
                 

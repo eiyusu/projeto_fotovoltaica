@@ -10,7 +10,9 @@ from SPI_fixo import *
 #from SPI_provisorio import *
 from senseHat_measurements import *
 from dayPart_handler import *
-from file_uploader import *
+
+# Subprocesso para fazer upload dos dados
+os.popen('python3 /home/pi/Desktop/projeto_fotovoltaica/file_uploader.py')
 
 # Inicializacao comum - pigpiod e ADC7705
 os.system('sudo pigpiod')
@@ -56,11 +58,8 @@ def read_SenseHat():
 def check_dayPart():
     file_handler()
     
-def upload_file():
-    upload_files()
 
 def main(args):
-
 # Flutuante
 #    schedule(read_SPI_flutuante,interval=0.1)
 #    schedule(read_SenseHat,interval=1)
@@ -74,9 +73,6 @@ def main(args):
     
 # Rotina para verificar e comprimir arquivos
     schedule(check_dayPart,interval=7200)
-
-# Rotina para verificar e fazer upload de arquivos
-    schedule(upload_file(),interval=7200)
         
     run_loop()
 
