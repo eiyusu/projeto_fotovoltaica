@@ -31,7 +31,6 @@ def upload_files():
         os.chdir('/home/pi/Desktop/projeto_fotovoltaica')
         gauth = GoogleAuth()
         drive = GoogleDrive(gauth) 
-        
         if day_part == '1':
             data = datetime.date.today() - datetime.timedelta(days=1)
             dir_name = data.strftime("dados_%Y_%m_%d_4")
@@ -69,3 +68,5 @@ def upload_files():
                 print(dir_name+' uploaded')
                 os.remove("/home/pi/Desktop/projeto_fotovoltaica/saved_data/"+dir_name+".tar.bz2")
                 print(dir_name+'.tar.bz2 deleted')
+                
+                
