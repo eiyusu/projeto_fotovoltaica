@@ -9,7 +9,6 @@ import time
 from SPI_fixo import *
 #from SPI_provisorio import *
 from senseHat_measurements import *
-from dayPart_handler import *
 
 # Subprocesso para fazer upload dos dados
 os.popen('python3 /home/pi/Desktop/projeto_fotovoltaica/file_uploader.py')
@@ -55,9 +54,6 @@ def read_SPI_flutuante():
 def read_SenseHat():
     read_senseHat_sensors()
     
-def check_dayPart():
-    file_handler()
-    
 
 def main(args):
 # Flutuante
@@ -70,9 +66,6 @@ def main(args):
 # Provisório
 #    schedule(read_SPI_provisorio,interval=0.1)
 #    schedule(read_SenseHat,interval=1)
-    
-# Rotina para verificar e comprimir arquivos
-    schedule(check_dayPart,interval=7200)
         
     run_loop()
 
