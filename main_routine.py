@@ -36,7 +36,7 @@ GPIO_IRR = 26
 
 # Escalas comuns
 ACS712_ESCALA =10 #1A/100mV = 10A/V
-ACS712_OFFSET =2.5 #2.5V para 0A com ganho de 100mV/
+ACS712_OFFSET = 0 #2.5V para 0A com ganho de 100mV/
 
 #SPI Provisorio
 def read_SPI_provisorio():
