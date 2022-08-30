@@ -7,6 +7,17 @@ import time
 import datetime
 from main_routine import *
 
+G_P25_P1 = 1
+G_P25_P2 = 1
+G_P25_P3 = 1
+G_P25_P4 = 1
+G_AD620_P1 = 1
+G_AD620_P3 = 1
+G_AD260_IRR = 1
+OFF_AD620_P1 = 0
+OFF_AD620_P3 = 0
+OFF_AD620_IRR = 0
+
 def read_SPI_flutuante_sensors():
 
     data = datetime.date.today()
@@ -34,12 +45,12 @@ def read_SPI_flutuante_sensors():
 
     ad7705.initChannel(CHN_AIN1)
     time.sleep(slp_time)
-    tensao_p1 = ad7705.readADResultRaw(CHN_AIN1)*ESCALA
+    tensao_p1 = ((ad7705.readADResultRaw(CHN_AIN1)*ESCALA)-OFF_AD620_P1)*(1/G_AD620_P1)*(1/G_P25_P1)
     time.sleep(slp_time)
 
     ad7705.initChannel(CHN_AIN2)
     time.sleep(slp_time)
-    tensao_p2 = ad7705.readADResultRaw(CHN_AIN2)*ESCALA
+    tensao_p2 = ad7705.readADResultRaw(CHN_AIN2)*ESCALA*(1/G_P25_P2)
     #Desativar o CS
     pi.write(GPIO_TENSAO_P1P2, 1)
     time.sleep(slp_time)
@@ -51,12 +62,12 @@ def read_SPI_flutuante_sensors():
 
     ad7705.initChannel(CHN_AIN1)
     time.sleep(slp_time)
-    tensao_p3 = ad7705.readADResultRaw(CHN_AIN1)*ESCALA
+    tensao_p3 = ((ad7705.readADResultRaw(CHN_AIN1)*ESCALA)-OFF_AD620_P3)*(1/G_AD620_P3)*(1/G_P25_P3)
     time.sleep(slp_time)
 
     ad7705.initChannel(CHN_AIN2)
     time.sleep(slp_time)
-    tensao_p4 = ad7705.readADResultRaw(CHN_AIN2)*ESCALA
+    tensao_p4 = ad7705.readADResultRaw(CHN_AIN2)*ESCALA*(1/G_P25_P4)
     #Desativar o CS
     pi.write(GPIO_TENSAO_P3P4, 1)
     time.sleep(slp_time)
@@ -83,7 +94,7 @@ def read_SPI_flutuante_sensors():
     pi.write(GPIO_IRR, 0)
     ad7705.initChannel(CHN_AIN2)
     time.sleep(slp_time)
-    irradiacao = ad7705.readADResultRaw(CHN_AIN1)*ESCALA
+    irradiacao = ((ad7705.readADResultRaw(CHN_AIN1)*ESCALA)-OFF_AD620_IRR)*(1/G_AD6200_IRR)
     #Desativar o CS
     pi.write(GPIO_IRR, 1)
     

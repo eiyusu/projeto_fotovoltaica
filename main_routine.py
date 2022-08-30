@@ -64,8 +64,8 @@ def main(args):
 #    schedule(read_SPI_fixo,interval=0.1)
 
 # Provisório
-    schedule(read_SPI_provisorio,interval=0.1)
-    schedule(read_SenseHat,interval=1)
+    schedule(read_SPI_provisorio,interval=0.75)
+    schedule(read_SenseHat,interval=.1)
         
     run_loop()
 

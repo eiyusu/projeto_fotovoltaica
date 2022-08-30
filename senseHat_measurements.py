@@ -3,7 +3,13 @@ import csv
 import os
 import time
 import datetime
-from main_routine import *
+import threading
+from threading import Timer
+
+class RepeatTimer(Timer):
+    def run(self):
+        while not self.finished.wait(self.interval):
+            self.function(*self.args, **self.kwargs)
 
 def read_senseHat_sensors():
     sense = SenseHat()
@@ -54,6 +60,10 @@ def read_senseHat_sensors():
             arquivo = csv.DictWriter(csv_file_sense, fieldnames=header_sense)
             arquivo.writeheader()
             arquivo.writerows(dados_sense)
-    csv_file_sense.close()
     
-    print(str(horario)+': Sense Hat data saved')
+def main(args):
+    
+
+if __name__ == '__main__':
+    import sys
+    sys.exit(main(sys.argv))

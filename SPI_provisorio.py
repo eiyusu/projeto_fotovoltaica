@@ -7,6 +7,13 @@ import time
 import datetime
 from main_routine import *
 
+G_P25_P1 = 1
+G_P25_P2 = 1
+G_AD620_P1 = 1
+G_AD260_IRR = 1
+OFF_AD620_P1 = 0
+OFF_AD620_IRR = 0
+
 def read_SPI_provisorio_sensors():
     data = datetime.date.today()
     horario = datetime.datetime.now()
@@ -31,12 +38,12 @@ def read_SPI_provisorio_sensors():
 
     ad7705.initChannel(CHN_AIN1)
     time.sleep(slp_time)
-    tensao_p1 = ad7705.readADResultRaw(CHN_AIN1)*ESCALA
+    tensao_p1 = ((ad7705.readADResultRaw(CHN_AIN1)*ESCALA)-OFF_AD620_P1)*(1/G_AD620_P1)*(1/G_P25_P1)
     time.sleep(slp_time)
 
     ad7705.initChannel(CHN_AIN2)
     time.sleep(slp_time)
-    tensao_p2= ad7705.readADResultRaw(CHN_AIN2)*ESCALA
+    tensao_p2= ad7705.readADResultRaw(CHN_AIN2)*ESCALA*(1/G_P25_P2)
     #Desativar o CS
     pi.write(GPIO_TENSAO, 1)
     time.sleep(slp_time)
@@ -53,7 +60,7 @@ def read_SPI_provisorio_sensors():
     #Canal do piranômetro ---definir ganho e escala de acordo com a curva do sensor para definir radiação
     ad7705.initChannel(CHN_AIN2)
     time.sleep(slp_time)
-    radiacao = ad7705.readADResultRaw(CHN_AIN2)*ESCALA
+    radiacao = ((ad7705.readADResultRaw(CHN_AIN2)*ESCALA)-OFF_AD620_IRR)*(1/G_AD6200_IRR)
     #Desativar o CS
     pi.write(GPIO_CURR_IRR, 1)
     
