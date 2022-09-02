@@ -7,9 +7,9 @@ import time
 import datetime
 from main_routine import *
 
-G_P25_P1 = 1
-G_P25_P2 = 1
-G_AD620_P1 = 1
+G_P25_P1 = (3.24/67.7)
+G_P25_P2 = (3.25/68)
+G_AD620_P1 = 1.471
 G_AD260_IRR = 1
 OFF_AD620_P1 = 0
 OFF_AD620_IRR = 0

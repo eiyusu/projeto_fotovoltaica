@@ -103,17 +103,19 @@ def file_handler():
                 
 def main(args):
     while True:
+        time.sleep(3000)
         #Comprime os arquivos
         file_handler()
         
         #Liga internet
+        os.system('cd /etc/ppp/peers/;sudo ifconfig wlan0 down;sudo pon rnet')
         time.sleep(600)
         
         #Joga arquivos no drive
         upload_files()
         
         #Desliga internet
-        time.sleep(3000)
+        os.system('cd /etc/ppp/peers/;sudo poff rnet;sudo ifconfig wlan0 up')
 
 if __name__ == '__main__':
     import sys

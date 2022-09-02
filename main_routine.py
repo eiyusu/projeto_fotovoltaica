@@ -57,14 +57,14 @@ def read_SenseHat():
 
 def main(args):
 # Flutuante
-#    schedule(read_SPI_flutuante,interval=0.1)
-#    schedule(read_SenseHat,interval=1)
+#    schedule(read_SPI_flutuante,interval=.75)
+#    schedule(read_SenseHat,interval=.1)
 
 # Fixo
-#    schedule(read_SPI_fixo,interval=0.1)
+#    schedule(read_SPI_fixo,interval=0.75)
 
 # Provisório
-    schedule(read_SPI_provisorio,interval=0.75)
+    schedule(read_SPI_provisorio,interval=.75)
     schedule(read_SenseHat,interval=.1)
         
     run_loop()
