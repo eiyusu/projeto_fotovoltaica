@@ -11,9 +11,9 @@ G_P25_P1 = (4.6/47.5)
 G_P25_P2 = (4.62/47.1)
 G_P25_P3 = (4.62/47.5)
 G_P25_P4 = (3.28/69.4)
-G_AD620_P1 = 1.472
-G_AD620_P3 = 1.471
-G_AD260_IRR = 1.495
+G_AD620_P1 = 1.481
+G_AD620_P3 = 1.481
+G_AD620_IRR = 1.5
 OFF_AD620_P1 = 0
 OFF_AD620_P3 = 0
 OFF_AD620_IRR = 0
@@ -78,13 +78,13 @@ def read_SPI_flutuante_sensors():
     ad7705.initChannel(CHN_AIN1)
     time.sleep(slp_time)
     corrente_p1p2_v = ad7705.readADResultRaw(CHN_AIN1)*ESCALA
-    corrente_p1p2 = (corrente_p1p2_v-ACS712_OFFSET)*ACS712_ESCALA
+    corrente_p1p2 = (corrente_p1p2_v*ACS712_ESCALA)-ACS712_OFFSET
     time.sleep(slp_time)
 
     ad7705.initChannel(CHN_AIN2)
     time.sleep(slp_time)
     corrente_p3p4_v = ad7705.readADResultRaw(CHN_AIN2)*ESCALA
-    corrente_p3p4 = (corrente_p3p4_v-ACS712_OFFSET)*ACS712_ESCALA
+    corrente_p3p4 = (corrente_p3p4_v*ACS712_ESCALA)-ACS712_OFFSET
     #Desativar o CS
     pi.write(GPIO_CURR, 1)
     time.sleep(slp_time)
@@ -94,7 +94,7 @@ def read_SPI_flutuante_sensors():
     pi.write(GPIO_IRR, 0)
     ad7705.initChannel(CHN_AIN2)
     time.sleep(slp_time)
-    irradiacao = ((ad7705.readADResultRaw(CHN_AIN1)*ESCALA)-OFF_AD620_IRR)*(1/G_AD6200_IRR)
+    irradiacao = (((ad7705.readADResultRaw(CHN_AIN1)*ESCALA)*(1/G_AD620_IRR))-OFF_AD620_IRR)*10
     #Desativar o CS
     pi.write(GPIO_IRR, 1)
     

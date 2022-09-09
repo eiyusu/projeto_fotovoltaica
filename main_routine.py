@@ -5,9 +5,9 @@ import os
 import pigpio
 from sense_hat import SenseHat
 import time
-#from SPI_flutuante import *
+from SPI_flutuante import *
 #from SPI_fixo import *
-from SPI_provisorio import *
+#from SPI_provisorio import *
 from senseHat_measurements import *
 
 # Subprocesso para fazer upload dos dados
@@ -36,7 +36,7 @@ GPIO_IRR = 26
 
 # Escalas comuns
 ACS712_ESCALA =10 #1A/100mV = 10A/V
-ACS712_OFFSET = 0 #2.5V para 0A com ganho de 100mV/
+ACS712_OFFSET = 25 #2.5V para 0A com ganho de 100mV/
 
 #SPI Provisorio
 def read_SPI_provisorio():
@@ -57,17 +57,18 @@ def read_SenseHat():
 
 def main(args):
 # Flutuante
-#    schedule(read_SPI_flutuante,interval=.75)
-#    schedule(read_SenseHat,interval=.1)
+    schedule(read_SPI_flutuante,interval=.100)
+    schedule(read_SenseHat,interval=1)
 
 # Fixo
 #    schedule(read_SPI_fixo,interval=0.75)
 
 # Provisório
-    schedule(read_SPI_provisorio,interval=.75)
-    schedule(read_SenseHat,interval=.1)
+#    schedule(read_SPI_provisorio,interval=.75)
+#    schedule(read_SenseHat,interval=.1)
         
     run_loop()
+
 
 if __name__ == '__main__':
     import sys

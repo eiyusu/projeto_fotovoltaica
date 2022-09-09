@@ -82,7 +82,7 @@ SPEED = 50000
 DELAY = 10
 
 ESCALA = 5/65535
-slp_time = 0.0001
+slp_time = 0.001
 
 class AD770X():
     def __init__(self,bus=0,device=0) :
