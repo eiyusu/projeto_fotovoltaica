@@ -61,4 +61,12 @@ def read_senseHat_sensors():
             arquivo.writeheader()
             arquivo.writerows(dados_sense)
     
-    
+
+def main(args):
+    while(1):
+        read_senseHat_sensors()
+        time.sleep(.1)
+
+if __name__ == '__main__':
+    import sys
+    sys.exit(main(sys.argv))

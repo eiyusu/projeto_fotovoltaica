@@ -87,3 +87,12 @@ def read_SPI_fixo_sensors():
     csv_file.close()
     print(str(horario)+': SPI Fixo data saved')
 
+
+def main(args):
+    while(1):
+        read_SPI_fixo_sensors()
+        time.sleep(.1)
+
+if __name__ == '__main__':
+    import sys
+    sys.exit(main(sys.argv))

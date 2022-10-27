@@ -1,17 +1,9 @@
 # sudo pigpiod
 from AD770X import *
-from ischedule import schedule, run_loop
 import os
 import pigpio
 from sense_hat import SenseHat
 import time
-from SPI_flutuante import *
-#from SPI_fixo import *
-#from SPI_provisorio import *
-from senseHat_measurements import *
-
-# Subprocesso para fazer upload dos dados
-os.popen('python3 /home/pi/Desktop/projeto_fotovoltaica/file_uploader.py')
 
 # Inicializacao comum - pigpiod e ADC7705
 os.system('sudo pigpiod')
@@ -37,37 +29,23 @@ GPIO_IRR = 26
 # Escalas comuns
 ACS712_ESCALA =10 #1A/100mV = 10A/V
 ACS712_OFFSET = 25 #2.5V para 0A com ganho de 100mV/
-
-#SPI Provisorio
-def read_SPI_provisorio():
-    read_SPI_provisorio_sensors()
-    
-#SPI Fixo
-def read_SPI_fixo():
-    read_SPI_fixo_sensors()
-    
-#SPI Flutuante
-def read_SPI_flutuante():
-    read_SPI_flutuante_sensors()
-
-#Sense Hat
-def read_SenseHat():
-    read_senseHat_sensors()
-    
+ 
 
 def main(args):
-# Flutuante
-    schedule(read_SPI_flutuante,interval=.100)
-    schedule(read_SenseHat,interval=1)
+    # Subprocesso para fazer upload dos dados
+    os.popen('python3 /home/pi/Desktop/projeto_fotovoltaica/file_uploader.py')
 
-# Fixo
-#    schedule(read_SPI_fixo,interval=0.75)
+    # Subprocesso para fazer leitura do SPI Fixo
+    # os.popen('python3 /home/pi/Desktop/projeto_fotovoltaica/SPI_fixo.py')
 
-# Provisório
-#    schedule(read_SPI_provisorio,interval=.75)
-#    schedule(read_SenseHat,interval=.1)
-        
-    run_loop()
+    # Subprocesso para fazer leitura do SPI Flutuante
+    #os.popen('python3 /home/pi/Desktop/projeto_fotovoltaica/SPI_flutuante.py')
+
+    # Subprocesso para fazer leitura do SPI Provisório
+    os.popen('python3 /home/pi/Desktop/projeto_fotovoltaica/SPI_provisorio.py')
+
+    # Subprocesso para fazer leitura do Sense Hat
+    os.popen('python3 /home/pi/Desktop/projeto_fotovoltaica/senseHat_measurements.py')
 
 
 if __name__ == '__main__':

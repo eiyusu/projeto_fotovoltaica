@@ -88,3 +88,13 @@ def read_SPI_provisorio_sensors():
             arquivo.writerows(dados)
     csv_file.close()
     print(str(horario)+': SPI Provisorio data saved')
+
+
+def main(args):
+    while(1):
+        read_SPI_provisorio_sensors()
+        time.sleep(.1)
+
+if __name__ == '__main__':
+    import sys
+    sys.exit(main(sys.argv))
